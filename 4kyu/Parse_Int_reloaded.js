@@ -54,8 +54,7 @@ function parseInt(string) {
     for (let i = 0; i < arr.length; i++) {
       if(nums.has(arr[i])) {
         if(arr[i] === 'hundred' || arr[i] === 'thousand' || arr[i] === 'million') {
-          sum -= nums.get(arr[i-1]);
-          sum += nums.get(arr[i-1]) * nums.get(arr[i]);
+          sum *= nums.get(arr[i]);
         } else {
           sum += nums.get(arr[i]);
         }
