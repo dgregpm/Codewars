@@ -30,15 +30,47 @@
 // Answer:
 
 function topThreeWords(text) {
+  let arrObj = {};
+  let word = "";
+  let result = [];
+  for(let i=0;i<text.length;i++) {
+    if(text[i].toUpperCase() !== text[i].toLowerCase() || text[i] === '\'') {
+      word += text[i].toLowerCase();
+      if(i === text.length - 1) {
+        arrObj[word] ? arrObj[word]++ : arrObj[word] = 1;
+      }
+    } else if(word.length > 0) {
+      arrObj[word] ? arrObj[word]++ : arrObj[word] = 1;
+      word = "";
+    }
+  }
+  for(let j=3;j>0;j--){
+    let max = 0;
+    let maxProp = "";
+    for(const c in arrObj) {
+      if(arrObj[c]>max){
+        max = arrObj[c];
+        maxProp = c;
+      }
+    }
+    delete arrObj[maxProp];
+    result.push(maxProp);
+  }
+  return result;
+}
+
+function topThreeWords2(text) {
     let arr = [];
     let word = "";
     let textArr = text.split('');
+    
     for(const [i, c] of textArr.entries()) {
       if(c.toUpperCase() !== c.toLowerCase() || c === '\'') {
         word += c.toLowerCase();
     
-        if(i === text.length-1)
+        if(i === text.length-1) {
             arr.push(word);
+        }
       } else if(word.length > 0){
         arr.push(word);
         word = "";
@@ -71,3 +103,5 @@ function topThreeWords(text) {
     }
     return arr2;
   }
+
+  console.log(topThreeWords("e e e e DDD ddd DdD: ddd ddd aa aA Aa, bb cc cC e e e"));
