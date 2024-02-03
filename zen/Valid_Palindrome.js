@@ -27,4 +27,5 @@ var isPalindrome = function(s) {
     return true;
 };
 
-console.log(isPalindrome("0p"));
+
+console.log(isPalindrome("poop"));
